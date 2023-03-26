@@ -21,6 +21,7 @@
         devShells.default = mkShell {
           buildInputs = [
             rust
+            rust-analyzer
           ];
 
           shellHook = ''
