@@ -1,4 +1,4 @@
-// use std::{thread, time};
+use rayon;
 
 fn bubble_sort(a: &mut Vec<i32>) {
     // item below limit are not jet unsorted
@@ -56,8 +56,9 @@ fn quick_sort(a: &mut [i32]) {
     }
     let pivi = pivot(a, l / 2);
     let (left, right) = a.split_at_mut(pivi);
-    quick_sort(left);
-    quick_sort(right);
+
+    rayon::join(|| quick_sort(left), || quick_sort(right));
+    quick_sort(right)
 }
 
 fn main() {
