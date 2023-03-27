@@ -61,7 +61,6 @@ fn quick_sort<T: ParSort>(a: &mut [T]) {
     let (left, right) = a.split_at_mut(pivi);
 
     rayon::join(|| quick_sort(left), || quick_sort(right));
-    quick_sort(right)
 }
 
 fn main() {
